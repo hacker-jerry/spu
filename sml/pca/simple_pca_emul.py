@@ -63,7 +63,8 @@ def emul_SimplePCA(mode: emulation.Mode.MULTIPROCESS):
         emulator.up()
         # Create a simple dataset
         X = random.normal(random.PRNGKey(0), (15, 100))
-        result = emulator.run(proc)(X)
+        X_ = emulator.seal(X)
+        result = emulator.run(proc)(X_)
         print("X_transformed_jax: ", result[0])
         print("X_transformed_jax: ", result[1])
         # The transformed data should have 2 dimensions
