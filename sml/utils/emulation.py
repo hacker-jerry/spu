@@ -34,7 +34,7 @@ import yaml
 import spu.utils.distributed as ppd
 from spu import spu_pb2
 
-CLUSTER_ABY3_3PC = "/Users/matr1x/Codes/GitHub/spu/examples/python/conf/3pc.json"
+CLUSTER_ABY3_3PC = "examples/python/conf/3pc.json"
 SML_HOME = pathlib.Path(__file__).resolve().parent.parent
 SAMPLE_CIDR = "172.16.238.0/24"
 # FIXME: use a released image
