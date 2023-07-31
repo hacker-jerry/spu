@@ -60,12 +60,15 @@ def emul_SimplePCA(mode: emulation.Mode.MULTIPROCESS):
         
         # 获取样本的类别数
         n_classes = len(set(y_train.tolist()))
+        n_neighbors = 3
 
         # 将y_train映射为从0开始的连续数组
         label_to_int = defaultdict(lambda: len(label_to_int))
         y_train_new = jnp.array([label_to_int[label] for label in y_train.tolist()])
 
-        result = emulator.run(proc)(X_train, y_train_new, X_test, n_classes, n_neighbors=3)(static_argnums=(3,4))
+        X_train_, y_train_new_, X_test_, = emulator.seal(X_train, y_train_new, X_test)
+
+        result = emulator.run(proc,static_argnums=(3,4))(X_train_, y_train_new_, X_test_, n_classes, n_neighbors)
         
         # 再从连续数组映射回原来的标签
         int_to_label = {i: label for label, i in label_to_int.items()}

@@ -81,7 +81,7 @@ def emul_SimplePCA(mode: emulation.Mode.MULTIPROCESS):
         print("X_transformed_sklearn: ", X_transformed)
         print("X_variances_sklearn: ", X_variances)
 
-        result = emulator.run(proc_reconstruct)(X)
+        result = emulator.run(proc_reconstruct)(X_)
 
         print("X_reconstructed_jax: ", result)
 
